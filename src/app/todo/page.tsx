@@ -29,6 +29,11 @@ const Todo = () => {
         setUpdating(false);
         setEditingId(null);
     };
+    const cancelEdit = () => {
+        setInputVal("");
+        setUpdating(false);
+        setEditingId(null);
+    };
     return (
         <div className="flex justify-center h-screen py-40">
             <div className="_todo_wrap w-150 card bg-white shadow-md rounded-lg p-6 mt-4 mx-auto h-auto">
@@ -46,14 +51,24 @@ const Todo = () => {
                         onChange={(e) => setInputVal(e.target.value)}
                     />
                     {(updating && (
-                        <button
-                            onClick={() => {
-                                updateItem(inputVal);
-                            }}
-                            className="mt-4 w-20 cursor-pointer bg-cyan-600 text-white p-2 rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500"
-                        >
-                            Update
-                        </button>
+                        <>
+                            <button
+                                onClick={() => {
+                                    updateItem(inputVal);
+                                }}
+                                className="mt-4 w-20 cursor-pointer bg-cyan-600 text-white p-2 rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                            >
+                                Update
+                            </button>
+                            <button
+                                onClick={() => {
+                                    cancelEdit();
+                                }}
+                                className="mt-4 ms-2 w-20 cursor-pointer bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                            >
+                                Cancel
+                            </button>
+                        </>
                     )) || (
                         <button
                             onClick={() => {
